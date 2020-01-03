@@ -7,7 +7,7 @@ var mandRenderer, juliaRenderer;
 
 class Renderer {
 
-	constructor(renderTarget) {
+	constructor(renderTarget, loadedShaders) {
 
 		if (renderTarget !== "mandelbrot" && renderTarget !== "julia") throw new Error("Incorrect render target: " + renderTarget);
 
@@ -20,11 +20,11 @@ class Renderer {
 		var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
 
 		if (renderTarget === "mandelbrot") {
-			gl.shaderSource(vertexShader, mandvsText);
-			gl.shaderSource(fragmentShader, mandfsText);
+			gl.shaderSource(vertexShader, loadedShaders.mandvsText);
+			gl.shaderSource(fragmentShader, loadedShaders.mandfsText);
 		} else if (renderTarget === "julia") {
-			gl.shaderSource(vertexShader, juliavsText);
-			gl.shaderSource(fragmentShader, juliafsText);
+			gl.shaderSource(vertexShader, loadedShaders.juliavsText);
+			gl.shaderSource(fragmentShader, loadedShaders.juliafsText);
 		}
 
 		gl.compileShader(vertexShader);
@@ -270,12 +270,11 @@ class Renderer {
 }
 
 
-var initRenderer = function() {
-
+var initRenderer = function(loadErrors, loadedShaders) {
 	cv = document.getElementById("cv");
 	gl = cv.getContext("webgl");
 	if (!gl) {
-		console.log("WebGL not supported, falling back on experimental WebGL")
+		console.log("WebGL not supported, falling back on experimental WebGL");
 		gl = canvas.getContext("experimental-webgl");
 	}
 	if (!gl){
@@ -287,8 +286,8 @@ var initRenderer = function() {
 	juliaText = document.getElementById("juliaText");
 	fpsText = document.getElementById("fpsText");
 
-	mandRenderer = new Renderer("mandelbrot");
-	juliaRenderer = new Renderer("julia");
+	mandRenderer = new Renderer("mandelbrot", loadedShaders);
+	juliaRenderer = new Renderer("julia", loadedShaders);
 
 	mandRenderer.update();
 	juliaRenderer.update();

@@ -1,3 +1,9 @@
+# Optimization
+
+- formatter
+- using async to load shader scripts
+- how to run ? for Mac, `python -m SimpleHTTPServer`, then, access `http://localhost:8000`
+ 
 # WebGL-Mandelbrot
 
 WebGL-Mandelbrot is an interactive browser-based Mandelbrot & Julia Set renderer
