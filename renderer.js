@@ -26,7 +26,7 @@ class Renderer {
 			gl.shaderSource(vertexShader, juliavsText);
 			gl.shaderSource(fragmentShader, juliafsText);
 		}
-		
+
 		gl.compileShader(vertexShader);
 		if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
 			console.error("Error compiling " + renderTarget + " vertex shader");
@@ -72,7 +72,7 @@ class Renderer {
 
 		this.mode = 1;
 		this.modeUniformLocation = gl.getUniformLocation(this.program, "mode");
-		
+
 		this.innerMode = 1;
 		this.innerModeUniformLocation = gl.getUniformLocation(this.program, "innerMode");
 
@@ -113,7 +113,7 @@ class Renderer {
 		2, 3, 0
 		]);
 		this.elementsVBO = gl.createBuffer();
-		
+
 		this.vpress = false;
 	}
 
@@ -182,7 +182,7 @@ class Renderer {
 		if (keys['7']) this.mode = 7;
 		if (keys['8']) this.mode = 8;
 		if (keys['9']) this.mode = 9;
-		
+
 		if (keys['1'] && ctrl) this.innerMode = 1;
 		if (keys['2'] && ctrl) this.innerMode = 2;
 		if (keys['3'] && ctrl) this.innerMode = 3;
@@ -200,7 +200,7 @@ class Renderer {
 
 		var toVec3String = function(v) {
 			return v[0].toFixed(6) + ", " + v[1].toFixed(6) + ", " + v[2].toFixed(6);
-		}
+		};
 
 		var toCNumString = function(v) {
 			var s = v[0].toFixed(6);
@@ -211,7 +211,7 @@ class Renderer {
 		    }
 		    s += Math.abs(v[1].toFixed(6)) + "i";
 		    return s;
-		}
+		};
 
 		this.text.innerHTML =
 		" Pos: " + toCNumString(this.pos) +
@@ -247,7 +247,7 @@ class Renderer {
 		gl.uniform1f(this.aspectRatioUniformLocation, cv.width / cv.height);
 
 		gl.uniform1i(this.modeUniformLocation, this.mode);
-      gl.uniform1i(this.innerModeUniformLocation, this.innerMode);
+        gl.uniform1i(this.innerModeUniformLocation, this.innerMode);
 
 		gl.uniform1f(this.renderVarUniformLocation, this.renderVar);
 
@@ -256,7 +256,7 @@ class Renderer {
 		if (this.renderTarget === "julia") {
 			gl.uniform2fv(this.vcUniformLocation, new Float32Array(vc));
 		}
-		
+
 		gl.enableVertexAttribArray(this.vertexAttribLocation);
 	   	gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesVBO);
 	   	gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.STATIC_DRAW);
@@ -292,13 +292,13 @@ var initRenderer = function() {
 
 	mandRenderer.update();
 	juliaRenderer.update();
-}
+};
 
 var update = function() {
 	if (mx < cv.width / 2) mandRenderer.update();
 	else juliaRenderer.update();
 	fpsText.innerHTML = "FPS: " + fps;
-}
+};
 
 var render = function() {
 
@@ -307,5 +307,5 @@ var render = function() {
 
 	mandRenderer.render();
 	juliaRenderer.render(mandRenderer.pos);
-}
+};
 
