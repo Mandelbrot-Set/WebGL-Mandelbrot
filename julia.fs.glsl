@@ -190,7 +190,7 @@ float calcIter(CNum z) {
 	if (innerMode == 1) return calcIter1(z);
 	else if (innerMode == 2) return calcIter2(z);
 	else if (innerMode == 3) return calcIter3(z);
-  else return 0.0;
+  	else return 0.0;
 }
 
 void main(void) {

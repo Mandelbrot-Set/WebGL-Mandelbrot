@@ -192,7 +192,7 @@ float calcIter(CNum c) {
 	if (innerMode == 1) return calcIter1(c);
 	else if (innerMode == 2) return calcIter2(c);
 	else if (innerMode == 3) return calcIter3(c);
-  else return 0.0;
+  	else return 0.0;
 }
 
 void main(void) {
