@@ -4,6 +4,17 @@
 - 改用async异步加载glsl文件
 - 怎么运行? for Mac, `python -m SimpleHTTPServer`, then, access `http://localhost:8000`
 
+# WebGL流程
+    1、画布id与webGL绑定
+    
+    2、渲染器：创建渲染器 -> 连接源码 -> 编译源码 -> 创建程序 -> Attach渲染器 -> 连接程序 -> 校验程序
+    这个流程和代码都比较固定。这里不同的是 创建了两个渲染器，一个是Mandelbrot集合,一个是Julia集合。
+    这里其实是在GPU创建了渲染器。
+    
+    3、缓冲区Buffer：创建Buffer -> 绑定Buffer -> 指定Buffer数据 -> 得到属性位置 -> 指定顶点属性指针 -> Enable属性位置
+    这里是在CPU端建立与GPU的桥梁，将渲染器的输入在CPU端绑定变量，并告诉渲染器顶点数据。这里需要注意的是划分了Mandelbrot和
+    Julia区域的顶点数据，Mandelbrot是左半边，Julia是右半边。
+    
 # 算法解析
     1、对位置pos考虑宽高比、旋转、缩放、平移因素，再进行计算
     2、根据对pos的进一步预处理方法，分成九种模式：

@@ -1,8 +1,6 @@
 var keys = {};
 var shift = false, ctrl = false, alt = false;
 var mx, my;
-
-var vpressed = false;
 var vtime = 0;
 
 var deltaTime = 0;

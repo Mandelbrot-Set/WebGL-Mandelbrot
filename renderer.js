@@ -113,8 +113,6 @@ class Renderer {
 		2, 3, 0
 		]);
 		this.elementsVBO = gl.createBuffer();
-
-		this.vpress = false;
 	}
 
 	update() {
