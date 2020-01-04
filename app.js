@@ -52,7 +52,6 @@ var onLoad = function() {
 		juliafsText: "/julia.fs.glsl",
 		juliavsText: "/julia.vs.glsl"
 	}, loadShaderAsync, (loadError, loadedShaders)=>{
-		console.log(loadedShaders);
 		initRenderer(loadError, loadedShaders);
 		var countTime = 0;
 		var prevTime = 0;
