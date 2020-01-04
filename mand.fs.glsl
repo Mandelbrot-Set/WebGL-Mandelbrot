@@ -133,7 +133,7 @@ float calcIter2(CNum c) {
 		if (i >= maxIter) break;
 		z = csquare(z);
 		z = cadd(z, c);
-     z = crecpcl(z);
+     	z = crecpcl(z);
 		if (cmodsq(z) > 4.0) {
 			z = csquare(z);
 			z = cadd(z, c);
@@ -155,7 +155,7 @@ float calcIter3(CNum c) {
 		if (i >= maxIter) break;
 		z = csquare(z);
 		z = cadd(z, c);
-     z = ccos(z);
+     	z = ccos(z);
 		if (cmodsq(z) > 4.0) {
 			z = csquare(z);
 			z = cadd(z, c);
